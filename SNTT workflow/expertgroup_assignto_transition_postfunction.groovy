@@ -34,15 +34,14 @@ if (stringExpertgroup != null){
 
     if(stringExpertgroup == "NOC")
     {
-      if(issue.assignee != null)
+    	if(issue.assignee != null)
     	{
-			     projectRoleManager.isUserInProjectRole(issue.assignee, userRole, issue.projectObject)
-	    }
+    		projectRoleManager.isUserInProjectRole(issue.assignee, userRole, issue.projectObject)
+	}
       else
       {
           issue.setAssignee(nocgroup);
       }
-
         ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "noc@surfnet.nl")
         ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet NOC")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder());
@@ -53,14 +52,13 @@ if (stringExpertgroup != null){
     else if(stringExpertgroup == "WNOC")
     {
       if(issue.assignee != null)
-    	{
-			     projectRoleManager.isUserInProjectRole(issue.assignee, userRole, issue.projectObject)
-	    }
+      {
+		projectRoleManager.isUserInProjectRole(issue.assignee, userRole, issue.projectObject)
+      }
       else
       {
           issue.setAssignee(wnocgroup);
       }
-
         ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "wnoc@surfnet.nl")
         ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet WNOC")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder())
@@ -78,12 +76,10 @@ if (stringExpertgroup != null){
       {
           issue.setAssignee(kubusgroup);
       }
-
         ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "kubus@surfnet.nl")
         ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet KUBUS")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder())
-  		  cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
+	cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
         log.error "KUBUS statement"
     }
-
 }
