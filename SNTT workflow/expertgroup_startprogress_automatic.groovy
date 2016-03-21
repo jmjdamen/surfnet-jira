@@ -20,6 +20,7 @@ OptionsManager optManager = ComponentAccessor.getOptionsManager()
 def customFieldManager = ComponentAccessor.getCustomFieldManager()
 def cfExpertgroup = customFieldManager.getCustomFieldObject("customfield_12201")
 def cfExpertmail = customFieldManager.getCustomFieldObject("customfield_12202")
+def cfExpertname = customFieldManager.getCustomFieldObject("customfield_12214")
 def userManager = ComponentAccessor.getUserManager()
 
 Options options = optManager.getOptions(cfExpertgroup.getRelevantConfig(issue))
@@ -40,27 +41,35 @@ log.error stringRoles
 if (stringRoles.contains("NOC") && stringRoles.contains("WNOC")){
   log.error("Found NOC and Found WNOC, setting Expert Group to NOC")
   ModifiedValue mValgroup = new ModifiedValue(issue.getCustomFieldValue(cfExpertgroup), nocOption );
+  ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet NOC")
   cfExpertgroup.updateValue(null, issue, mValgroup, new DefaultIssueChangeHolder());
+  cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder());
   issue.setCustomFieldValue(cfExpertmail, "noc@surfnet.nl")
 }
 
 else if (stringRoles.contains("NOC")){
   log.error("Found NOC, setting Expert Group to NOC")
   ModifiedValue mValgroup = new ModifiedValue(issue.getCustomFieldValue(cfExpertgroup), nocOption );
+  ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet NOC")
   cfExpertgroup.updateValue(null, issue, mValgroup, new DefaultIssueChangeHolder());
+  cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
   issue.setCustomFieldValue(cfExpertmail, "noc@surfnet.nl")
 }
 
 else if (stringRoles.contains("WNOC")){
   log.error("Found WNOC, setting Expert Group to WNOC")
   ModifiedValue mValgroup = new ModifiedValue(issue.getCustomFieldValue(cfExpertgroup), wnocOption );
+  ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet WNOC")
   cfExpertgroup.updateValue(null, issue, mValgroup, new DefaultIssueChangeHolder());
+  cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
   issue.setCustomFieldValue(cfExpertmail, "wnoc@surfnet.nl")
 }
 
 else if (stringRoles.contains("KUBUS")){
   log.error("Found KUBUS, setting Expert Group to KUBUS")
-  ModifiedValue mValgroup = new ModifiedValue(issue.getCustomFieldValue(cfExpertgroup), wnocOption );
+  ModifiedValue mValgroup = new ModifiedValue(issue.getCustomFieldValue(cfExpertgroup), kubusOption );
+  ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet KUBUS")
   cfExpertgroup.updateValue(null, issue, mValgroup, new DefaultIssueChangeHolder());
+  cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
   issue.setCustomFieldValue(cfExpertmail, "kubus@surfnet.nl")
 }
