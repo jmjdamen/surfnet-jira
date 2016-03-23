@@ -39,11 +39,18 @@ if (stringExpertgroup != null){
 
     if(stringExpertgroup == "NOC")
     {
+<<<<<<< HEAD
       if(issue.assignee == null)
+=======
+    	if(issue.assignee != null)
+    	{
+    		projectRoleManager.isUserInProjectRole(issue.assignee, userRole, issue.projectObject)
+	}
+      else
+>>>>>>> e803f42cb612bc1d3dc1de18296cac4eaf6531d9
       {
           issue.setAssignee(nocgroup);
       }
-
         ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "noc@surfnet.nl")
         ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet NOC")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder());
@@ -54,11 +61,18 @@ if (stringExpertgroup != null){
 
     else if(stringExpertgroup == "WNOC")
     {
+<<<<<<< HEAD
       if(issue.assignee == null)
+=======
+      if(issue.assignee != null)
+      {
+		projectRoleManager.isUserInProjectRole(issue.assignee, userRole, issue.projectObject)
+      }
+      else
+>>>>>>> e803f42cb612bc1d3dc1de18296cac4eaf6531d9
       {
           issue.setAssignee(wnocgroup);
       }
-
         ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "wnoc@surfnet.nl")
         ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet WNOC")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder())
@@ -73,13 +87,15 @@ if (stringExpertgroup != null){
       {
           issue.setAssignee(kubusgroup);
       }
-
         ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "kubus@surfnet.nl")
         ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet KUBUS")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder())
+<<<<<<< HEAD
   	  	cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
 		    //issue.setSecurityLevelId((Long) securityid kubus)
+=======
+	cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
+>>>>>>> e803f42cb612bc1d3dc1de18296cac4eaf6531d9
         log.error "KUBUS statement"
     }
-
 }
