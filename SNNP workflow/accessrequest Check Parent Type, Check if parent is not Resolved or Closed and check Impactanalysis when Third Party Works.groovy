@@ -22,7 +22,6 @@ if(!(parentStatus != "Resolved" && parentStatus != "Closed"))
      invalidInputException = new InvalidInputException("Project is not in a valid status, it's Resolved or Closed!")
 }
 
-
 if(parent_type == "10304" && impactanalysis == "Not Executed")
 {
     invalidInputException = new InvalidInputException("Impactanalysis is Not Executed, make sure an Impactanalysis is performed first!")
@@ -31,4 +30,4 @@ if(parent_type == "10304" && impactanalysis == "Not Executed")
 if(parent_type != "10300" && parent_type != "10304")
 {
 	invalidInputException = new InvalidInputException("Access Requests can only be created under Projects and Third Party Works!")
-}        
+}

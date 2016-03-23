@@ -13,6 +13,5 @@ def customFieldManager = ComponentAccessor.getCustomFieldManager()
 def cf = customFieldManager.getCustomFieldObject("customfield_11606")
 def counter = (double) issue.getCustomFieldValue(cf)
 counter = counter + 1
-//log.error version
 
 issue.setCustomFieldValue(cf, counter)

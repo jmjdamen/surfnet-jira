@@ -10,13 +10,13 @@ ComponentManager componentManager = ComponentManager.getInstance()
 def currentUser = ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser()
 def customFieldManager = ComponentAccessor.getCustomFieldManager()
 //customfield 'Expert Group' , 12201 jira-test
-def cf = customFieldManager.getCustomFieldObject("customfield_12201")
+def cfExpertgroup = customFieldManager.getCustomFieldObject("customfield_11900") //jira-test cfid: 12201
 
 //if assignee is not Unassigned and Expert Group is not set
-if (issue.assignee != null && cf != null){
+if (issue.assignee != null && cfExpertgroup != null){
 
   ProjectRoleManager projectRoleManager = ComponentManager.getComponentInstanceOfType(ProjectRoleManager.class) as ProjectRoleManager
-  ProjectRole userRole = projectRoleManager.getProjectRole((String) issue.getCustomFieldValue(cf))
+  ProjectRole userRole = projectRoleManager.getProjectRole((String) issue.getCustomFieldValue(cfExpertgroup))
 
   if(projectRoleManager.isUserInProjectRole(currentUser, userRole, issue.projectObject)){
     log.error ("Current user IS in Expert Group!")
