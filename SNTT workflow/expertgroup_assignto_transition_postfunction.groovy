@@ -14,21 +14,20 @@ import com.atlassian.jira.user.ApplicationUser
 ComponentManager componentManager = ComponentManager.getInstance()
 def userManager = ComponentAccessor.getUserManager()
 def customFieldManager = ComponentAccessor.getCustomFieldManager()
-def cfExpertgroup = customFieldManager.getCustomFieldObject("customfield_11900") //jira-test cfid: 12201
-def cfExpertmail = customFieldManager.getCustomFieldObject("customfield_11901") //jira-test cfid: 12202
-def cfExpertname = customFieldManager.getCustomFieldObject("customfield_11902") //jira-test cfid: 12214
+def cfExpertgroup = customFieldManager.getCustomFieldObject("customfield_12201") //jira-test cfid: 12201
+def cfExpertmail = customFieldManager.getCustomFieldObject("customfield_12202") //jira-test cfid: 12202
+def cfExpertname = customFieldManager.getCustomFieldObject("customfield_12214") //jira-test cfid: 12214
 
 def stringExpertgroup = (String) issue.getCustomFieldValue(cfExpertgroup)
+ApplicationUser nocgroup = userManager.getUserByName("noc_group_user")
+ApplicationUser wnocgroup = userManager.getUserByName("wnoc_group_user")
+ApplicationUser kubusgroup = userManager.getUserByName("kubus_group_user")
 
-ApplicationUser nocgroup = userManager.getUserByKey("noc_group_user")
-ApplicationUser wnocgroup = userManager.getUserByKey("wnoc_group_user")
-ApplicationUser kubusgroup = userManager.getUserByKey("kubus_group_user")
+log.error "Expert Group:" + stringExpertgroup
+log.error "Assignee:" + issue.assignee
 
-log.error stringExpertgroup
-log.error issue.assignee
-
-ProjectRoleManager projectRoleManager = ComponentManager.getComponentInstanceOfType(ProjectRoleManager.class) as ProjectRoleManager
-ProjectRole userRole = projectRoleManager.getProjectRole((String) issue.getCustomFieldValue(cfExpertgroup))
+//ProjectRoleManager projectRoleManager = ComponentManager.getComponentInstanceOfType(ProjectRoleManager.class) as ProjectRoleManager
+//ProjectRole userRole = projectRoleManager.getProjectRole((String) issue.getCustomFieldValue(cfExpertgroup))
 
 if (stringExpertgroup != null){
 
@@ -39,15 +38,7 @@ if (stringExpertgroup != null){
 
     if(stringExpertgroup == "NOC")
     {
-<<<<<<< HEAD
-      if(issue.assignee == null)
-=======
-    	if(issue.assignee != null)
-    	{
-    		projectRoleManager.isUserInProjectRole(issue.assignee, userRole, issue.projectObject)
-	}
-      else
->>>>>>> e803f42cb612bc1d3dc1de18296cac4eaf6531d9
+	  if(issue.assignee == null)
       {
           issue.setAssignee(nocgroup);
       }
@@ -61,15 +52,7 @@ if (stringExpertgroup != null){
 
     else if(stringExpertgroup == "WNOC")
     {
-<<<<<<< HEAD
       if(issue.assignee == null)
-=======
-      if(issue.assignee != null)
-      {
-		projectRoleManager.isUserInProjectRole(issue.assignee, userRole, issue.projectObject)
-      }
-      else
->>>>>>> e803f42cb612bc1d3dc1de18296cac4eaf6531d9
       {
           issue.setAssignee(wnocgroup);
       }
@@ -77,7 +60,8 @@ if (stringExpertgroup != null){
         ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet WNOC")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder())
         cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
-		    issue.setSecurityLevelId((Long) 10101)
+	    	issue.setSecurityLevelId((Long) 10101)
+        issue.setAssignee(wnocgroup);
         log.error "WNOC statement"
     }
 
@@ -90,12 +74,8 @@ if (stringExpertgroup != null){
         ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "kubus@surfnet.nl")
         ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet KUBUS")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder())
-<<<<<<< HEAD
   	  	cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
 		    //issue.setSecurityLevelId((Long) securityid kubus)
-=======
-	cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
->>>>>>> e803f42cb612bc1d3dc1de18296cac4eaf6531d9
         log.error "KUBUS statement"
     }
 }
