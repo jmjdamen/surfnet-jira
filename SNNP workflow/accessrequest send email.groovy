@@ -6,7 +6,6 @@ import com.atlassian.jira.issue.fields.CustomField
 import com.atlassian.jira.issue.CustomFieldManager
 
 ComponentManager componentManager = ComponentManager.getInstance()
-
 MutableIssue muIssue = issue;
 
 def customFieldManager = ComponentAccessor.getCustomFieldManager()

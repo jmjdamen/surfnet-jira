@@ -9,7 +9,6 @@ import com.opensymphony.workflow.InvalidInputException
 ComponentManager componentManager = ComponentManager.getInstance()
 def currentUser = ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser()
 def customFieldManager = ComponentAccessor.getCustomFieldManager()
-//customfield 'Expert Group' , 12201 jira-test
 def cfExpertgroup = customFieldManager.getCustomFieldObject("customfield_11900") //jira-test cfid: 12201
 
 //if assignee is not Unassigned and Expert Group is not set
