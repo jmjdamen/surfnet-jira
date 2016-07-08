@@ -122,9 +122,85 @@ jQuery(document).ready(function($) {
           }
           }
           if (summaryfield != null) summaryfield.value="Toegangsaanvraag " + startdatetime.value + " - " + housinglocation.value + " - " + housingaddress.value;
+      } else if (issuetypefield.value == "Functional Design") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Functional Design";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Technical Design") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Technical Design";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Category and Risk Assessment") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Category and Risk Assessment";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Release and Deployment Plan") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Release and Deployment Plan";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Build") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Build";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Technical Documentation") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Technical Documentation";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Functional Documentation") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Functional Documentation";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Test Scenarios") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Test Scenarios";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Set up Test Environment") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Set up Test Environment";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Execute Tests") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Execute Tests";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
+      } else if (issuetypefield.value == "Implementation") {
+        if(pIssue[0]) {
+          var result = getPkeyIssue(pIssue[0].value);
+          var summaryParent = result.fields.summary;
+          var summaryPrefix = "Implementation";
+          summaryfield.value=summaryPrefix + " - " + summaryParent;
+        }
       }
     }
-
   }
 
   function getPkeyIssue(issueId){
