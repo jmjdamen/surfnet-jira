@@ -35,7 +35,7 @@ if(arrayDiff(declinedIds, acceptedIds) == ""){
     diffCheck = true;
 }
 
-if(invalidStatus == false && diffCheck == true && cabApproved == "No"){
+if(arraySize(issueSubtasks) != 0 && invalidStatus == false && diffCheck == true && cabApproved == "No"){
     result = "Yes";
 }
 
