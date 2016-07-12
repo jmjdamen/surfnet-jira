@@ -2,7 +2,7 @@ string [] issueSubtasks = subtasks(key);
 string [][] items;
 boolean invalidStatus = false;
 string[] declinedIds;
-string[] acceptedIds;
+string[] acceptedCancelledIds;
 boolean diffCheck = false;
 string result = "No";
 int index = 0;
@@ -10,11 +10,13 @@ int index = 0;
 string cabApproved = customfield_11100;
 
 for(string subtask in issueSubtasks){
-    items[index]["key"] = subtask.key;
-    items[index]["id"] = subtask.issueTypeId;
-    items[index]["status"] = subtask.status;
-    items[index]["resolution"] = subtask.resolution;
-    index++;
+    if(subtask.issueTypeId == "10801" || subtask.issueTypeId == "10802" || subtask.issueTypeId == "10803"){
+        items[index]["key"] = subtask.key;
+        items[index]["id"] = subtask.issueTypeId;
+        items[index]["status"] = subtask.status;
+        items[index]["resolution"] = subtask.resolution;
+        index++;
+    }
 }
 
 for(number i = 0; i < arraySize(items); i = i + 1){
@@ -22,8 +24,8 @@ for(number i = 0; i < arraySize(items); i = i + 1){
         invalidStatus = true;
     }
 
-    if(items[i]["resolution"] == "Accepted"){
-    acceptedIds = acceptedIds + items[i]["id"];
+    if(items[i]["resolution"] == "Accepted" || items[i]["resolution"] == "Cancelled"){
+    acceptedCancelledIds = acceptedCancelledIds + items[i]["id"];
     }
 
     if(items[i]["resolution"] == "Declined"){
@@ -31,7 +33,7 @@ for(number i = 0; i < arraySize(items); i = i + 1){
 }
 }
 
-if(arrayDiff(declinedIds, acceptedIds) == ""){
+if(arrayDiff(declinedIds, acceptedCancelledIds) == ""){
     diffCheck = true;
 }
 
