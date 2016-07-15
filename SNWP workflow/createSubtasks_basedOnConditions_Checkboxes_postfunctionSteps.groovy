@@ -50,3 +50,6 @@ issue.assignee = null
 cfValues['Subtasks to Create (Execution Phase)']*.value.contains("Implementation")
 issue.summary = 'Implementation - ' + sourceIssue.summary
 issue.assignee = null
+*
+issue.summary = 'Evaluation - ' + sourceIssue.summary
+issue.assignee = null
