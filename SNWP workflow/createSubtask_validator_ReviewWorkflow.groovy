@@ -16,9 +16,14 @@ def parentIssue = muIssue.getParentObject()
 def parentStatus = (String) parentIssue.getStatus().name
 def subTaskManager = ComponentAccessor.getSubTaskManager();
 def subTasks = parentIssue.getSubTaskObjects()
+def subtaskVersions = []
 
 def cfCabApproved = customFieldManager.getCustomFieldObject("customfield_11100")
 String CabApproved = parentIssue.getCustomFieldValue(cfCabApproved)
+
+def cfVersion = customFieldManager.getCustomFieldObject("customfield_12300")
+int Version = (int) muIssue.getCustomFieldValue(cfVersion);
+
 
 if(issueTypeId == "10801" || issueTypeId == "10802")
 {
@@ -43,9 +48,23 @@ if(issueTypeId == "10806" || issueTypeId == "10807")
 for(subtask in subTasks)
 {
     String subtaskTypeId = subtask.getIssueTypeId();
-    String subtaskStatus = subtask.getStatus().name
-    if(subtaskTypeId == issueTypeId && (subtaskStatus != "Resolved" && subtaskStatus != "Closed"))
+    if(subtaskTypeId == issueTypeId)
     {
-		invalidInputException = new InvalidInputException("Can't create subtask, there already is a subtask of this type that is in status " + subtaskStatus)
+        String subtaskStatus = subtask.getStatus().name;
+        int subtaskVersion = (int) subtask.getCustomFieldValue(cfVersion);
+        subtaskVersions.push(subtaskVersion)
+        if(subtaskStatus != "Resolved" && subtaskStatus != "Closed")
+        {
+            invalidInputException = new InvalidInputException("Can't create subtask, there already is a subtask of this type that is in status " + subtaskStatus)
+        }
     }
+}
+
+if(Version <= (int) subtaskVersions.max())
+{
+	invalidInputException = new InvalidInputException("Can't create subtask, there already is a subtask of this type with the same version or there are higher versions.")
+}
+if((Version - (int) subtaskVersions.max()) > 1)
+{
+	invalidInputException = new InvalidInputException("Can't create subtask, there is a gap in version numbers.")
 }
