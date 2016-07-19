@@ -21,7 +21,7 @@ def cfExpertname = customFieldManager.getCustomFieldObject("customfield_12214") 
 def stringExpertgroup = (String) issue.getCustomFieldValue(cfExpertgroup)
 ApplicationUser nocgroup = userManager.getUserByName("noc_group_user")
 ApplicationUser wnocgroup = userManager.getUserByName("wnoc_group_user")
-ApplicationUser kubusgroup = userManager.getUserByName("kubus_group_user")
+ApplicationUser surfcumulusgroup = userManager.getUserByName("surfcumulus_group_user")
 
 log.error "Expert Group:" + stringExpertgroup
 log.error "Assignee:" + issue.assignee
@@ -61,21 +61,21 @@ if (stringExpertgroup != null){
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder())
         cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
 	    	issue.setSecurityLevelId((Long) 10101)
-        issue.setAssignee(wnocgroup);
+        //issue.setAssignee(wnocgroup);
         log.error "WNOC statement"
     }
 
-    else if(stringExpertgroup == "KUBUS")
+    else if(stringExpertgroup == "SURFcumulus")
     {
       if(issue.assignee == null)
       {
-          issue.setAssignee(kubusgroup);
+          issue.setAssignee(surfcumulusgroup);
       }
-        ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "kubus@surfnet.nl")
-        ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFnet KUBUS")
+        ModifiedValue mValemail = new ModifiedValue(issue.getCustomFieldValue(cfExpertmail), "surfcumulus@surfnet.nl")
+        ModifiedValue mValname = new ModifiedValue(issue.getCustomFieldValue(cfExpertname), "SURFcumulus")
         cfExpertmail.updateValue(null, issue, mValemail, new DefaultIssueChangeHolder())
   	  	cfExpertname.updateValue(null, issue, mValname, new DefaultIssueChangeHolder())
 		    //issue.setSecurityLevelId((Long) securityid kubus)
-        log.error "KUBUS statement"
+        log.error "SURFcumulus statement"
     }
 }

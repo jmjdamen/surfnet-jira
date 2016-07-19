@@ -199,7 +199,7 @@ jQuery(document).ready(function($) {
           var summaryPrefix = "Implementation";
           summaryfield.value=summaryPrefix + " - " + summaryParent;
         }
-      }
+      } 
     }
   }
 
