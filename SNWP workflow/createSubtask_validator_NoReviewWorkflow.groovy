@@ -28,7 +28,7 @@ if(issueTypeId == "10803")
     }
 }
 
-if(issueTypeId == "10804" || issueTypeId == "10805" || issueTypeId == "10808" || issueTypeId == "10809" || issueTypeId == "108010" || issueTypeId == "108011"){
+if(issueTypeId == "10804" || issueTypeId == "10805" || issueTypeId == "10808" || issueTypeId == "10809" || issueTypeId == "10810" || issueTypeId == "10811"){
     if((parentStatus != "Accepted" && parentStatus != "In Progress"))
     {
          invalidInputException = new InvalidInputException("Change is not in a valid status, it's " + parentStatus + ", creation of this subtask is only allowed while Change is 'Accepted' or 'In Progress'.")
