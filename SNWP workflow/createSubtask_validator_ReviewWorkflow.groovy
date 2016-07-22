@@ -24,7 +24,6 @@ String CabApproved = parentIssue.getCustomFieldValue(cfCabApproved)
 def cfVersion = customFieldManager.getCustomFieldObject("customfield_12300")
 int Version = (int) muIssue.getCustomFieldValue(cfVersion);
 
-
 if(issueTypeId == "10801" || issueTypeId == "10802")
 {
     if((parentStatus != "Open" && parentStatus != "Accepted"))
@@ -51,7 +50,7 @@ for(subtask in subTasks)
     if(subtaskTypeId == issueTypeId)
     {
         String subtaskStatus = subtask.getStatus().name;
-        int subtaskVersion = (int) subtask.getCustomFieldValue(cfVersion);
+        def subtaskVersion = subtask.getCustomFieldValue(cfVersion);
         subtaskVersions.push(subtaskVersion)
         if(subtaskStatus != "Resolved" && subtaskStatus != "Closed")
         {
